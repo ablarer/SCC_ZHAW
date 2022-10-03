@@ -13,7 +13,7 @@ from matplotlib.animation import FuncAnimation
 
 x_step = 0.5  # increment of x-coordinate in one step
 y_step = 0.25  # increment of y-coordinate in one step
-n = 200  # number of steps
+n = 250  # number of steps / frames
 
 cs = np.array([3., 4.])  # coordinates of the center of the square
 # arbitrarily chosen values
@@ -38,6 +38,7 @@ s4 = np.append(s4, 1)
 print('Three point vector: s4', s4)
 
 T = np.array([[1, 0, x_step], [0, 1, y_step], [0, 0, 1]])  # translation matrix
+print(T)
 
 list_points = []
 for i in range(n):
@@ -47,10 +48,11 @@ for i in range(n):
     s3 = T @ s3
     s4 = T @ s4
     list_points.append([cs, s1, s2, s3, s4])
+print('cs ', cs, 's1 ', s1, 's2 ', s2, 's3 ', s3, 's4 ',s4)
 
 fig, ax = plt.subplots()
-ln1, = plt.plot([], [], 'r')
-ln2, = plt.plot([], [], '.k')
+ln1, = plt.plot([], [], 'r')  # Box lines, For the box, plot empty list, Das Komma braucht es!
+ln2, = plt.plot([], [], '*b')  # Box center, For the center, plot empty list, Das Komma braucht es!
 
 
 def init():
@@ -61,7 +63,7 @@ def init():
 
 def update(frame):
     cs, s1, s2, s3, s4 = list_points[frame]
-    square = np.stack([s1, s2, s3, s4, s1]) # Stack points to be able to plot a suqare
+    square = np.stack([s1, s2, s3, s4, s1]) # Stack points to be able to plot a square
     x_data, y_data = square[:, 0], square[:, 1] # extract x- and y-values from the three vectors
     ln1.set_data(x_data, y_data)
     ln2.set_data(cs[0], cs[1]) # x- and y-coordinates for the center

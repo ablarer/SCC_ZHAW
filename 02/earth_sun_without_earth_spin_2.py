@@ -23,29 +23,27 @@ t_hori = np. array([side_len_earth/2, 0, 0])
 t_vert = np. array([0, side_len_earth/2, 0])
 
 # coordinates of the four vertices s1, s2, s3, s4 of the square
-s1 = ce - t_hori - t_vert
-s2 = ce + t_hori - t_vert
-s3 = ce + t_hori + t_vert
-s4 = ce - t_hori + t_vert
-print('Two point vector: s4', s4)
+se1 = ce - t_hori - t_vert
+se2 = ce + t_hori - t_vert
+se3 = ce + t_hori + t_vert
+se4 = ce - t_hori + t_vert
+print('Three point vector: se4', se4)
 
-# initialization (from now on, use homogeneous coordinates)
-ce = np.append(ce, 1)
-s1 = np.append(s1, 1)
-s2 = np.append(s2, 1)
-s3 = np.append(s3, 1)
-s4 = np.append(s4, 1)
-print('Three point vector: s4', s4)
+ce_tuple_list = [[ce, se1, se2, se3, se4]]
 
-ce_tuple_list = [[ce, s1, s2, s3, s4]]
 for i in range(n):
-    ce_tuple_list.append(am.rotate_tuple(ce_tuple_list[-1], sun[0], sun[1], phi_rotate))
+    ce = ce_tuple_list[-1][0]
+    ce_rotated = am.rotate_around_point(ce, sun[0], sun[1], phi_rotate)
+    ce_tuple_rotated = am.rotate_tuple(ce_tuple_list[-1], sun[0], sun[1], phi_rotate)
+    ce_tuple_list.append(ce_tuple_rotated)
+
 
 fig, ax = plt.subplots()
 plt.plot(sun[0], sun[1], '*b')
-ln1 = plt.plot([], [], '-r')
-ln2 = plt.plot([], [], '-k')
-ln3 = plt.plot([], [], '.k')
+ln1, = plt.plot([], [], '-r')
+ln2, = plt.plot([], [], '-k')
+ln3, = plt.plot([], [], '.k')
+
 
 def init():
     ax.axis([-10, 10, -10, 10])
@@ -54,11 +52,15 @@ def init():
 
 
 def update(frame):
-    ce, s1, s2, s3, s4 = ce_tuple_list[frame]
-    square = np.stack([s1, s2, s3, s4, s1])
+    ce, se1, se2, se3, se4 = ce_tuple_list[frame]
+    square = np.stack([se1, se2, se3, se4, se1])
     x_data_square, y_data_square = square[:, 0], square[:, 1]
-    side = np.stack([s4, s1])
-    x_data_side, y_data_side = side[:, 0], side[:, 1]
+    side = np.stack([se4, se1])
+    x_data_side, y_data_side = side[:, 0], side[:, 1] # extract x- and y-values from the three vectors
+    ln1.set_data(x_data_square, y_data_square)
+    ln2.set_data(x_data_side, y_data_side)
+    ln3.set_data(ce[0], ce[1])
+    return ln1, ln2, ln3
 
 
 ani = FuncAnimation(fig, update, frames=n, init_func=init, interval=10)

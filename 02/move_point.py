@@ -12,14 +12,14 @@ from matplotlib.animation import FuncAnimation
 
 x_step = 0.5  # increment of x-coordinate in one step
 y_step = 0.25  # increment of y-coordinate in one step
-n = 200  # number of steps
+n = 200  # number of steps / frames
 
 # data generation
 xdata = [0]
 ydata = [0]
 for i in range(n):
-    xdata.append(xdata[-1] + x_step)  # List, add element to list
-    ydata.append(ydata[-1] + y_step)  # List, add element to list
+    xdata.append(xdata[-1] + x_step)  # Take last element of list as number and add one step size.
+    ydata.append(ydata[-1] + y_step)  # Take last element of list as number and add one step size.
 
 # setup of animation
 fig, ax = plt.subplots()
@@ -35,7 +35,6 @@ def init():
 
 def update(frame):
     ln.set_data(xdata[frame], ydata[frame])  # set object on the line object
-
     return ln,
 
 

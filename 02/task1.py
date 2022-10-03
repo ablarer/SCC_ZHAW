@@ -27,25 +27,15 @@ def rotate_around_point(p, a, b, phi):
 
     return p_new
 
-def rotate_tuple(p_old, a, b, phi):
 
-    p_new = [rotate_around_point(p_old[0], a, b, phi), rotate_around_point(p_old[1], a, b, phi), rotate_around_point(p_old[2], a, b, phi), rotate_around_point(p_old[3], a, b, phi)]
+def rotate_tuple(p1, a, b, phi):
 
+    p_new = [rotate_around_point(p1[0], a, b, phi),
+             rotate_around_point(p1[1], a, b, phi),
+             rotate_around_point(p1[2], a, b, phi),
+             rotate_around_point(p1[3], a, b, phi),
+             rotate_around_point(p1[4], a, b, phi)]
     return p_new
-
-
-def rectangle(x, y, sx, sy, phi):
-    x1 = x - sx / 2.
-    x2 = x + sx / 2.
-    y1 = y - sy / 2.
-    y2 = y + sy / 2.
-
-    x1r, y1r = rotate_around_point([x1, y1], x, y, phi)[0:2]
-    x2r, y2r = rotate_around_point([x2, y1], x, y, phi)[0:2]
-    x3r, y3r = rotate_around_point([x2, y2], x, y, phi)[0:2]
-    x4r, y4r = rotate_around_point([x1, y2], x, y, phi)[0:2]
-
-    return np.array([[x1r, x2r, x3r, x4r, x1r], [y1r, y2r, y3r, y4r, y1r]])
 
 
 class TestRotateAroundPoint(unittest.TestCase):
