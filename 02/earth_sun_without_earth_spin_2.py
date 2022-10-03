@@ -5,22 +5,23 @@ Created on Mon Sep 27 14:40:47 2021
 @author: roor
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from matplotlib.animation import FuncAnimation
+
 import task1 as am
 
-ce = np. array([5, 0, 1]) # start coordinates of earth
-sun = np. array([0, 0, 1]) # coordinates of the sun
+ce = np.array([5, 0, 1])  # start coordinates of earth
+sun = np.array([0, 0, 1])  # coordinates of the sun
 
 side_len_earth = 2.
 n_per_day = 12
 n_days = 36
-n = n_days*n_per_day                   # number of iterations
-phi_rotate = 2*np.pi/n_days/n_per_day  # angular velocity earth sun
+n = n_days * n_per_day  # number of iterations
+phi_rotate = 2 * np.pi / n_days / n_per_day  # angular velocity earth sun
 
-t_hori = np. array([side_len_earth/2, 0, 0])
-t_vert = np. array([0, side_len_earth/2, 0])
+t_hori = np.array([side_len_earth / 2, 0, 0])
+t_vert = np.array([0, side_len_earth / 2, 0])
 
 # coordinates of the four vertices s1, s2, s3, s4 of the square
 se1 = ce - t_hori - t_vert
@@ -36,7 +37,6 @@ for i in range(n):
     ce_rotated = am.rotate_around_point(ce, sun[0], sun[1], phi_rotate)
     ce_tuple_rotated = am.rotate_tuple(ce_tuple_list[-1], sun[0], sun[1], phi_rotate)
     ce_tuple_list.append(ce_tuple_rotated)
-
 
 fig, ax = plt.subplots()
 plt.plot(sun[0], sun[1], '*b')
@@ -56,7 +56,7 @@ def update(frame):
     square = np.stack([se1, se2, se3, se4, se1])
     x_data_square, y_data_square = square[:, 0], square[:, 1]
     side = np.stack([se4, se1])
-    x_data_side, y_data_side = side[:, 0], side[:, 1] # extract x- and y-values from the three vectors
+    x_data_side, y_data_side = side[:, 0], side[:, 1]  # extract x- and y-values from the three vectors
     ln1.set_data(x_data_square, y_data_square)
     ln2.set_data(x_data_side, y_data_side)
     ln3.set_data(ce[0], ce[1])
