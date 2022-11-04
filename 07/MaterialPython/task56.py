@@ -23,6 +23,7 @@ nEVConsidered = 100    # #EV evaluated (maximal number to be used)
 #
 plt.figure(1)
 hlp.displaySourceImages(nPerson, nExpression)
+plt.show()
 
 ###########################################################################
 # Parameter
@@ -49,6 +50,7 @@ plt.figure(2)
 plt.clf()
 imshowGray(fullPicture)
 plt.axis('off')
+plt.show()
 
 
 ###########################################################################
@@ -76,6 +78,7 @@ for i in range(nEVShown):
 plt.figure(4)                                           # Darstellung EV
 imshowGray(imgEV)
 plt.axis('off')
+plt.show()
 
 
 ###########################################################################
@@ -89,12 +92,22 @@ plt.axis('off')
 # inside training set
 imgOrig = hlp.loadAndScaleImage(2, 4)
 
-### your code 
+### your code
+imgComp1 = hlp.displayCompressionResult(imgOrig, 50, evMatrix, imgMean)
+plt.figure(5)
+
+imgComp2 = hlp.displayCompressionResult(imgOrig, 20, evMatrix, imgMean)
+plt.figure(6)
+
+imgComp3 = hlp.displayCompressionResult(imgOrig, 10, evMatrix, imgMean)
+plt.figure(7)
+
+plt.show()
+### your code
 
 # inside training set
 imgOrig = hlp.loadAndScaleImage(31, 9)
 
-### your code
 
 
 ###########################################################################
@@ -104,3 +117,5 @@ data = load_data()
 imgScene = data['faceDetection']
 
 ### your code
+
+#%%
