@@ -14,7 +14,7 @@ from load_data import imshowGray, load_data
 # Globale Parameter
 #
 nPerson = 37           # #persons used (<=37)
-nExpression = 10       # #expressions used per persion (<=10)
+nExpression = 10       # #expressions used per person (<=10)
 nEVShown = 20          # #EV shown as image
 nEVConsidered = 100    # #EV evaluated (maximal number to be used)
 
@@ -23,6 +23,7 @@ nEVConsidered = 100    # #EV evaluated (maximal number to be used)
 #
 plt.figure(1)
 hlp.displaySourceImages(nPerson, nExpression)
+plt.title(f'All images one matrix: {nPerson} persons, {nExpression}, expressions')
 plt.show()
 
 ###########################################################################
@@ -47,8 +48,9 @@ for i in range(nId):
         imgSet[k, :], dims = hlp.transformImageToVector(img)  # as vector
 
 plt.figure(2)
-plt.clf()
+# plt.clf()
 imshowGray(fullPicture)
+plt.title(f'Some images one matrix: {nId} persons, {nExpr}, expressions')
 plt.axis('off')
 plt.show()
 
@@ -62,7 +64,9 @@ imgMean = hlp.transformVectorToImage(vecMean, dims)     # mean image
 plt.figure(3)                                           # Darstellung mean
 plt.clf()
 imshowGray(imgMean)
+plt.title(f'One mean image of a face.')
 plt.axis('off')
+plt.show()
 
 evMatrix = hlp.getEigenvectors(imgSet, nEVConsidered)   # eigen vector matrix
 
@@ -77,6 +81,7 @@ for i in range(nEVShown):
 
 plt.figure(4)                                           # Darstellung EV
 imshowGray(imgEV)
+plt.title(f'Eigenvector images of on face.')
 plt.axis('off')
 plt.show()
 
@@ -93,13 +98,16 @@ plt.show()
 imgOrig = hlp.loadAndScaleImage(2, 4)
 
 ### your code
-imgComp1 = hlp.displayCompressionResult(imgOrig, 50, evMatrix, imgMean)
+compressedImage = hlp.compressPCAImage(imgOrig, 50, evMatrix, imgMean)
+imgComp1 = hlp.displayCompressionResult(imgOrig, compressedImage)
 plt.figure(5)
 
-imgComp2 = hlp.displayCompressionResult(imgOrig, 20, evMatrix, imgMean)
+compressedImage = hlp.compressPCAImage(imgOrig, 20, evMatrix, imgMean)
+imgComp2 = hlp.displayCompressionResult(imgOrig, compressedImage)
 plt.figure(6)
 
-imgComp3 = hlp.displayCompressionResult(imgOrig, 10, evMatrix, imgMean)
+compressedImage = hlp.compressPCAImage(imgOrig, 10, evMatrix, imgMean)
+imgComp3 = hlp.displayCompressionResult(imgOrig, compressedImage)
 plt.figure(7)
 
 plt.show()
@@ -117,5 +125,3 @@ data = load_data()
 imgScene = data['faceDetection']
 
 ### your code
-
-#%%

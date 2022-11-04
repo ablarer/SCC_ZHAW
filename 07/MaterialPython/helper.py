@@ -6,8 +6,9 @@ Created on Thu Oct  7 14:27:31 2021
 """
 
 import numpy as np
-import scipy.linalg as la
 import matplotlib.pyplot as plt
+from scipy import linalg
+
 from load_data import load_data, imshowGray
 
 
@@ -56,6 +57,43 @@ def faceDetection(imgF, d, vEigen, imgM):    # face detection
 
     return  # return array of ssd-values
 
+def transformImageToVector(M):
+    V = M.reshape((M.shape[0]*M.shape[1]))
+
+    return V, M.shape
+
+def getMean(dataMat):
+    m = dataMat.mean(axis=0)
+    return m
+
+def transformVectorToImage(V, dims):
+    M = V.reshape(dims)
+
+    return M
+
+def getEigenvectors(dataMat, k):
+    # np.cov calculates the covariance matrix of x
+    covMat = np.cov(dataMat.T)
+    n = len(covMat)
+    eigenvalues, eigenvectors = linalg.eigh(covMat, subset_by_index = [n - k, n - 1] )
+    # Reverse the order of elements in an array along the given axis.
+    eigenvectors = np.flip(eigenvectors, axis = 1)
+
+    return eigenvectors
+
+def compressPCAVector(vec, m, vEigen):
+    # Centered vector vec - m, substract the mean
+    vec_transformed = vEigen.T@(vec - m)
+    vec_compressed = (vEigen@vec_transformed) + m
+    return vec_compressed
+
+def compressPCAImage(I, nEigenvectors, V, mean):
+    V1, shape_image = transformImageToVector(I)
+    # mean is also a image and must be transformed to a vector
+    mean_vector = transformImageToVector(mean)[0]
+    vEigen = V[:, :nEigenvectors]
+    ICompressed = compressPCAVector(V1, mean_vector, vEigen)
+    ICompressed = transformVectorToImage(ICompressed, shape_image)
 
 # remove tests for students version
 if __name__ == "__main__":
