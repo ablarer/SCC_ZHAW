@@ -94,6 +94,7 @@ def compressPCAImage(I, nEigenvectors, V, mean):
     vEigen = V[:, :nEigenvectors]
     ICompressed = compressPCAVector(V1, mean_vector, vEigen)
     ICompressed = transformVectorToImage(ICompressed, shape_image)
+    return ICompressed
 
 # remove tests for students version
 if __name__ == "__main__":
