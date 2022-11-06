@@ -98,6 +98,7 @@ plt.show()
 imgOrig = hlp.loadAndScaleImage(2, 4)
 
 ### your code
+"""
 compressedImage = hlp.compressPCAImage(imgOrig, 50, evMatrix, imgMean)
 imgComp1 = hlp.displayCompressionResult(imgOrig, compressedImage)
 plt.figure(5)
@@ -111,6 +112,7 @@ imgComp3 = hlp.displayCompressionResult(imgOrig, compressedImage)
 plt.figure(7)
 
 plt.show()
+"""
 ### your code
 
 # inside training set
