@@ -22,7 +22,7 @@ from calculate_asymmetry_task4 import calculate_asymmetry_task4
 # 1) Define paths
 # os.chdir('C:\\Users\\knaa\\Documents\\01-Sync\\SCC\\Ressources\\02_Skin_Cancer_Detection\\Assignement\\Solutions')
 path = '.'
-# img ='B496a.png'
+img ='B496a.png'
 # img ='IMG_4106.jpg'
 path_img = path+'/'+img
 print('Processed Picture: ',img)

@@ -71,9 +71,9 @@ def calculate_color_task3(cropped_img_cl, cropped_img_mask, color_table, thresho
         for j in np.arange(0, num_color):
             """ ... YOUR CODE COMES HERE ... """
             eucl_diff[j] = np.linalg.norm(
-                [float(R[inside[i]]), float(R[inside[i]]), float(R[inside[i]])] - color_table[j, :])
-            ind_min = np.argmin(eucl_diff)
-            count[ind_min] = count[ind_min] + 1
+                [float(R[inside[i]]), float(G[inside[i]]), float(B[inside[i]])] - color_table[j, :])
+        ind_min = np.argmin(eucl_diff)
+        count[ind_min] = count[ind_min] + 1
 
     # 3) For each color, that is represented in more than the percantage of
     #    the pixels (defined by threshold), a point is given for the color score
@@ -89,6 +89,7 @@ def calculate_color_task3(cropped_img_cl, cropped_img_mask, color_table, thresho
     average_inside = [np.mean(R[inside]), np.mean(G[inside]), np.mean(B[inside])]
     average_outside = [np.mean(R[outside]), np.mean(G[outside]), np.mean(B[outside])]
     average_color_diff = np.linalg.norm(np.array(average_inside) - np.array(average_outside))
+
 
     # 5) Calculate the variance of the R,G,B channels inside the lesion using np.var()
 
