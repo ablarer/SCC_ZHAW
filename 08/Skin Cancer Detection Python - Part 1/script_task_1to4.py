@@ -33,7 +33,7 @@ crop_factor_melanoma1 = 0.1    # 10% of the edges of nevi images is cut away
 sigma = 5                      # sigma for imgaussfilt.m 
 rel_diff = 0.1                 # the relative difference between radii to increase the SFA index for the asymmetry calculation
 sfa_thresh = 140               # SFA index value used for the asymmetry score 
-color_threshold = 0.01         # trheshold for the the color calculation
+color_threshold = 0.01         # trheshold for the color calculation
 plot_image = 1                 # if set to 1, plots are generated
 
 color_table = np.empty([6,3])      # this color table defines the specific colors relevant for the color score in RGB!

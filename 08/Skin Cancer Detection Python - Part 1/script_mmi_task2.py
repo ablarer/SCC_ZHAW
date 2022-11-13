@@ -10,6 +10,7 @@ Created on Mon Nov  8 18:26:54 2021
 """
 
 import cv2
+import matplotlib.pyplot as plt
 import numpy as np
 
 from calculate_border_task1 import calculate_border_task1
@@ -57,6 +58,5 @@ cv2.rectangle(IGA, (x, y), (x + w, y + h), (0, 255, 0), 2)
 cv2.drawContours(IGA, border, -1, (255, 255, 0), 4)
 cv2.circle(IGA, (cX, cY), 5, (255, 255, 255), -1)
 # The following commands do not work ... why?
-cv2.imshow('img', IGA)
-cv2.waitKey(0)
-# cv2.destroyAllWindows ()
+plt.imshow(IGA)
+plt.show()

@@ -161,8 +161,8 @@ def calculate_border_task1(path_img, crop_factor, sigma):
          print("The contours have this data %r" %data)
     im = IG5.astype(np.uint8)
     cv2.drawContours(im,contours,-1,(255,255,0),4)
-    cv2.imshow('output',im)
-    cv2.waitKey(0)
+    plt.imshow(im)
+    plt.show()
 
 
 # Define output
