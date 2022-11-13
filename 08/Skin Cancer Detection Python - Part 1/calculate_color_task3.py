@@ -118,6 +118,7 @@ def calculate_color_task3(cropped_img_cl, cropped_img_mask, color_table, thresho
         plt.subplot(222), plt.hist(B, bins=50), plt.title('Histogram All')
         plt.subplot(223), plt.hist(B[inside], bins=50), plt.title('Histogram Inside')
         plt.subplot(224), plt.hist(B[outside], bins=50), plt.title('Histogram Outside')
+        plt.show()
 
         plt.figure(11)
         plt.subplot(221), plt.imshow(input_image[:, :, 1], cmap='Greens'), plt.axis(
@@ -125,6 +126,7 @@ def calculate_color_task3(cropped_img_cl, cropped_img_mask, color_table, thresho
         plt.subplot(222), plt.hist(G, bins=50), plt.title('Histogram All')
         plt.subplot(223), plt.hist(G[inside], bins=50), plt.title('Histogram Inside')
         plt.subplot(224), plt.hist(G[outside], bins=50), plt.title('Histogram Outside')
+        plt.show()
 
         plt.figure(12)
         plt.subplot(221), plt.imshow(input_image[:, :, 1], cmap='Reds'), plt.axis('off'), plt.colorbar(), plt.title(
