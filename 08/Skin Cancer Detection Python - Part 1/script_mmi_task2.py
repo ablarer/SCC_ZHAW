@@ -36,7 +36,7 @@ cropped_img_cl, cropped_img_gs, cropped_img_mask, border = calculate_border_task
 # Step 2: Calculate the centroid (center of mass) and bounding box
 # using cv2.moments() and cv2.boundingRect(), see online help for details
 
-IGA = np.copy(cropped_img_gs) # TODO There is a offset with the original code with "cropped_img_cl"
+IGA = np.copy(cropped_img_cl)
 
 # loop over the contours
 for c in border:

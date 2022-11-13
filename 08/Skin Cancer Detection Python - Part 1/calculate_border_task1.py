@@ -54,7 +54,7 @@ def calculate_border_task1(path_img, crop_factor, sigma):
     import cv2
 
     plt.subplot(2, 3, 1)
-    plt. rcParams['figure.dpi'] = 600
+    plt.rcParams['figure.dpi'] = 600
     I1 = cv2.imread(path_img, cv2.IMREAD_COLOR)
     I1 = cv2.cvtColor(I1, cv2.COLOR_BGR2RGB)
     plt.title('Original Image')
@@ -144,7 +144,6 @@ def calculate_border_task1(path_img, crop_factor, sigma):
     plt.title('Filled Image')
     plt.axis('off')
     plt.imshow(IG7, cmap='gray')
-
     plt.show()
 
 
@@ -167,8 +166,8 @@ def calculate_border_task1(path_img, crop_factor, sigma):
 
 # Define output
 
-    cropped_img_cl = I2
-    cropped_img_gs = IG2
+    cropped_img_cl = IG2
+    cropped_img_gs = IG3
     cropped_img_mask = IG7
     border = contours
     

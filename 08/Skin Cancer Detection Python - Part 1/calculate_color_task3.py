@@ -1,3 +1,5 @@
+import cv2
+
 def calculate_color_task3(cropped_img_cl, cropped_img_mask, color_table, threshold, plot_image):
     """
      This function does the following:
@@ -52,9 +54,18 @@ def calculate_color_task3(cropped_img_cl, cropped_img_mask, color_table, thresho
     import matplotlib.pyplot as plt
 
     # 1) Extract BGR color channels and flatten them (makes it easier)
-    B = cropped_img_cl[:, :, 0].astype(np.float64).flatten()
-    G = cropped_img_cl[:, :, 1].astype(np.float64).flatten()
-    R = cropped_img_cl[:, :, 2].astype(np.float64).flatten()
+    ## Versuch
+    path = '.'
+    img = 'B496a.png'
+    path_img = path + '/' + img
+    print('Processed Picture: ', img)
+    # Versuch
+
+    input_image = cv2.imread(img, cv2.IMREAD_COLOR)
+    # TODO Check if OK, replaced cropped_img_cl with input_image and the code between ## Versuch##
+    B = input_image[:, :, 0].astype(np.float64).flatten()
+    G = input_image[:, :, 1].astype(np.float64).flatten()
+    R = input_image[:, :, 2].astype(np.float64).flatten()
 
     # 2) Calculate euclidian distance (using np.linalg.norm())) from the defined colors for each pixel
     #    inside the lesion and count the closest pixels. Don't forget to turn the arrays R[inside[i]] etc.
@@ -75,7 +86,7 @@ def calculate_color_task3(cropped_img_cl, cropped_img_mask, color_table, thresho
         ind_min = np.argmin(eucl_diff)
         count[ind_min] = count[ind_min] + 1
 
-    # 3) For each color, that is represented in more than the percantage of
+    # 3) For each color, that is represented in more than the percentage of
     #    the pixels (defined by threshold), a point is given for the color score
 
     """ ... YOUR CODE COMES HERE ... """
@@ -97,23 +108,26 @@ def calculate_color_task3(cropped_img_cl, cropped_img_mask, color_table, thresho
     variance = [np.var(R[inside]), np.var(G[inside]),np.var(B[inside])]
 
     # 6) Do plots if plot_image is set to 1
+
+    # TODO Check if OK, replaced cropped_img_cl with input_image
+
     if plot_image:
         plt.figure(10)
-        plt.subplot(221), plt.imshow(cropped_img_cl[:, :, 0], cmap='Blues'), plt.axis('off'), plt.colorbar(), plt.title(
+        plt.subplot(221), plt.imshow(input_image[:, :, 0], cmap='Blues'), plt.axis('off'), plt.colorbar(), plt.title(
             'Blue Channel')
         plt.subplot(222), plt.hist(B, bins=50), plt.title('Histogram All')
         plt.subplot(223), plt.hist(B[inside], bins=50), plt.title('Histogram Inside')
         plt.subplot(224), plt.hist(B[outside], bins=50), plt.title('Histogram Outside')
 
         plt.figure(11)
-        plt.subplot(221), plt.imshow(cropped_img_cl[:, :, 1], cmap='Greens'), plt.axis(
+        plt.subplot(221), plt.imshow(input_image[:, :, 1], cmap='Greens'), plt.axis(
             'off'), plt.colorbar(), plt.title('Green Channel')
         plt.subplot(222), plt.hist(G, bins=50), plt.title('Histogram All')
         plt.subplot(223), plt.hist(G[inside], bins=50), plt.title('Histogram Inside')
         plt.subplot(224), plt.hist(G[outside], bins=50), plt.title('Histogram Outside')
 
         plt.figure(12)
-        plt.subplot(221), plt.imshow(cropped_img_cl[:, :, 1], cmap='Reds'), plt.axis('off'), plt.colorbar(), plt.title(
+        plt.subplot(221), plt.imshow(input_image[:, :, 1], cmap='Reds'), plt.axis('off'), plt.colorbar(), plt.title(
             'Red Channel')
         plt.subplot(222), plt.hist(R, bins=50), plt.title('Histogram All')
         plt.subplot(223), plt.hist(R[inside], bins=50), plt.title('Histogram Inside')
