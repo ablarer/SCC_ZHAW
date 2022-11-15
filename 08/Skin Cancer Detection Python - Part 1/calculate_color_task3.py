@@ -63,9 +63,9 @@ def calculate_color_task3(cropped_img_cl, cropped_img_mask, color_table, thresho
 
     input_image = cv2.imread(img, cv2.IMREAD_COLOR)
     # TODO Check if OK, replaced cropped_img_cl with input_image and the code between ## Versuch##
-    B = input_image[:, :, 0].astype(np.float64).flatten()
-    G = input_image[:, :, 1].astype(np.float64).flatten()
-    R = input_image[:, :, 2].astype(np.float64).flatten()
+    R = cropped_img_cl[:, :, 0].astype(np.float64).flatten()
+    G = cropped_img_cl[:, :, 1].astype(np.float64).flatten()
+    B = cropped_img_cl[:, :, 2].astype(np.float64).flatten()
 
     # 2) Calculate euclidian distance (using np.linalg.norm())) from the defined colors for each pixel
     #    inside the lesion and count the closest pixels. Don't forget to turn the arrays R[inside[i]] etc.
@@ -108,9 +108,6 @@ def calculate_color_task3(cropped_img_cl, cropped_img_mask, color_table, thresho
     variance = [np.var(R[inside]), np.var(G[inside]),np.var(B[inside])]
 
     # 6) Do plots if plot_image is set to 1
-
-    # TODO Check if OK, replaced cropped_img_cl with input_image
-
     if plot_image:
         plt.figure(10)
         plt.subplot(221), plt.imshow(input_image[:, :, 0], cmap='Blues'), plt.axis('off'), plt.colorbar(), plt.title(

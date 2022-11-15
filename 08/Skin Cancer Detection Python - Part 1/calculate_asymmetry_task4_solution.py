@@ -1,4 +1,4 @@
-def calculate_asymmetry_task4(r_bin, rel_diff, sfa_thresh):
+def calculate_asymmetry_task4_solution(r_bin, rel_diff, sfa_thresh):
 
     """
     % This function does the following:
@@ -30,7 +30,7 @@ def calculate_asymmetry_task4(r_bin, rel_diff, sfa_thresh):
     %                            sfa(ind_minor_axis)=sfa_minor_axis
     %          asymmetry       : asymmetry value (0,1 or 2)
     % Remarks: none
-    % Example: sfa,sfa_major_axis,ind_major_axis,sfa_minor_axis,ind_minor_axis,asymmetry = calculate_asymmetry_task4(r_bin, rel_diff,sfa_thresh)
+    % Example: sfa,sfa_major_axis,ind_major_axis,sfa_minor_axis,ind_minor_axis,asymmetry = calculate_asymmetry_task4_solution(r_bin, rel_diff,sfa_thresh)
     % Date: November, 11,2021, knaa
     """
 
@@ -51,24 +51,20 @@ def calculate_asymmetry_task4(r_bin, rel_diff, sfa_thresh):
             if(rel_diff_r1 < rel_diff or rel_diff_r2 < rel_diff): sfa[i]=sfa[i]+1
 
 
-# 2) Find angle with the highest score, this is the major symmetry axis
+# 2) Find angle with highest score, this is the major symmetry axis
     sfa_major_axis = np.max(sfa)
     ind_major_axis = np.argmax(sfa)
 
 # perpendicular axis is the minor axis of symmetry
-
-    """ ... YOUR CODE COMES HERE ... """
     if (ind_major_axis + 90 >= n):
-        ind_minor_axis = ind_major_axis+90 - n
+        ind_minor_axis = ind_major_axis+90 - n    
     else:
         ind_minor_axis = ind_major_axis+90
 
-    sfa_minor_axis = sfa[ind_minor_axis]
+    sfa_minor_axis = sfa[ind_minor_axis]    
 
 # 3) Calculate the asymmetry value
-
-    """ ... YOUR CODE COMES HERE ... """
-    if (sfa_major_axis >=sfa_thresh and sfa_minor_axis >= sfa_thresh): asymmetry = 0
+    if (sfa_major_axis >=sfa_thresh and sfa_minor_axis >= sfa_thresh): asymmetry = 0 
     elif (sfa_major_axis >=sfa_thresh and sfa_minor_axis < sfa_thresh):asymmetry = 1
     elif (sfa_major_axis <sfa_thresh and sfa_minor_axis < sfa_thresh): asymmetry = 2
     else: asymmetry=float('NaN')

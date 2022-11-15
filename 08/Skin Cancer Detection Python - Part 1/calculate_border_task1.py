@@ -50,6 +50,7 @@ def calculate_border_task1(path_img, crop_factor, sigma):
 
 
     """ ... YOUR CODE COMES HERE ... """
+    # Take read and converted image, results in I1
     import matplotlib.pyplot as plt
     import cv2
 
@@ -66,6 +67,7 @@ def calculate_border_task1(path_img, crop_factor, sigma):
 
 
     """ ... YOUR CODE COMES HERE ... """
+    # Take I1, results in IG1
     IG1 = cv2.cvtColor(I1, cv2.COLOR_RGB2GRAY)
     plt.subplot(2, 3, 2)
     plt.title('Gray Scale Image')
@@ -79,15 +81,12 @@ def calculate_border_task1(path_img, crop_factor, sigma):
 
 
     """ ... YOUR CODE COMES HERE ... """
-    # IG2
-    x = int(IG1.shape[0] * crop_factor / 2)
-    y = int(IG1.shape[1] * crop_factor / 2)
-    IG2 = IG1[x: -x, y: -y]
+    si = np.shape(IG1)
+    xrange = np.int64([crop_factor*si[0],(1-crop_factor)*si[0]])
+    yrange = np.int64([crop_factor*si[1],(1-crop_factor)*si[1]])
 
-    # I2
-    xrange = np.int64([crop_factor * IG1.shape[0], (1 - crop_factor) * IG1.shape[0]])
-    yrange = np.int64([crop_factor * IG1.shape[1], (1 - crop_factor) * IG1.shape[1]])
-    I2 = np.copy(I1[xrange[0]:xrange[1], yrange[0]:yrange[1], :])
+    I2 = np.copy(I1[xrange[0]:xrange[1],yrange[0]:yrange[1],:])
+    IG2 = np.copy(IG1[xrange[0]:xrange[1],yrange[0]:yrange[1]])
 
     plt.subplot(2, 3, 3)
     plt.title('Cropped Image')
@@ -101,6 +100,7 @@ def calculate_border_task1(path_img, crop_factor, sigma):
 
 
     """ ... YOUR CODE COMES HERE ... """
+    # Take IG2, results in IG3
     IG3 = cv2.GaussianBlur(IG2, ksize = (0,0), sigmaX = sigma, sigmaY = sigma, borderType = cv2.BORDER_REPLICATE)
     plt.subplot(2, 3, 4)
     plt.title('Gaussian Filter')
@@ -114,6 +114,7 @@ def calculate_border_task1(path_img, crop_factor, sigma):
 
 
     """ ... YOUR CODE COMES HERE ... """
+    # Take IG3, results in IG4
     ret, IG4 = cv2.threshold(IG3, 0, 1, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
     plt.subplot(2, 3, 5)
     plt.title('Otsu Binary Image')
@@ -127,8 +128,13 @@ def calculate_border_task1(path_img, crop_factor, sigma):
 
 
     """ ... YOUR CODE COMES HERE ... """
+    # Take IG4, results in IG5
     IG5 = -IG4 + 1
+
+    # Take IG5, results in IG6
     IG6 = ndimage.binary_fill_holes(IG5)
+
+    # Take I65, results in IG7
     ret, labels = cv2.connectedComponents(IG6.astype(np.uint8))
     sum_max_area = 0
     IG7 = np.array(labels)
@@ -151,6 +157,7 @@ def calculate_border_task1(path_img, crop_factor, sigma):
 
 
     """ ... YOUR CODE COMES HERE ... """
+    # Take IG7, results in contours
     thresh = np.copy(IG7.astype(np.uint8))
     contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
 
@@ -158,18 +165,19 @@ def calculate_border_task1(path_img, crop_factor, sigma):
     ##plotting
     for data in contours:
          print("The contours have this data %r" %data)
-    im = IG5.astype(np.uint8)
+    # IG2 is the cropped grayscale image, it is most probaly not IG5 like in the former matlab solution
+    im = IG2.astype(np.uint8)
     cv2.drawContours(im,contours,-1,(255,255,0),4)
-    plt.imshow(im)
+    plt.imshow(im, cmap='gray')
     plt.show()
 
 
 # Define output
 
-    cropped_img_cl = IG2
-    cropped_img_gs = IG3
+    cropped_img_cl = I2 # Cropped image color
+    cropped_img_gs = IG2 # Cropped grayscale image
     cropped_img_mask = IG7
     border = contours
     
-    return cropped_img_cl,cropped_img_gs,cropped_img_mask,border
+    return cropped_img_cl, cropped_img_gs, cropped_img_mask, border
 
