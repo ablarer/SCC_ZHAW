@@ -8,12 +8,12 @@ def Wave_PDE_Task1_8(xrange, trange, u_initial, du_initial, u0_boundary, uL_boun
     delta_t = (trange[-1] - trange[0]) / (m - 1)
 
     u[:, 0] = u_initial
-    u[:, 2] = du_initial
+    u[:, 1] = du_initial
     u[0, :] = u0_boundary
     u[-1, :] = uL_boundary
     alpha = k * delta_t / delta_x
 
-    if (alpha ** 2 < 1.0):
+    if alpha ** 2 < 1.0:
         Exception('Stability requires alpha < 0.5')
 
     for j in np.arange(0, m - 1):
