@@ -22,8 +22,8 @@ def f(x): return 4. * (x / L) * (1. - x / L)
 
 u_initial = f(xrange)
 du_initial = np.ones(u_initial.shape) * 0.2
-u0_boundary = np.zeros(nt)
-uL_boundary = np.zeros(nt)
+u0_boundary = np.zeros(nt) # u(0, t) = u(1, t) = 0
+uL_boundary = np.zeros(nt) # u(0, t) = u(1, t) = 0
 
 u = Wave_PDE_Task1_8(xrange, trange, u_initial, du_initial, u0_boundary, uL_boundary, k)
 
