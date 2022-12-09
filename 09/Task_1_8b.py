@@ -40,7 +40,7 @@ for t in range(100):
     plt.xlabel('x')
     plt.ylabel('u')
     plt.title('Task 1.8 a) Wave equation in 2D - Numerical Solution')
-    plt.pause(0.01)
+    plt.pause(0.1)
 
 plt.show()
 
