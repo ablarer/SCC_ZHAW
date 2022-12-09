@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from fontTools.merge import cmap
 from matplotlib import cm
 import numpy as np
 import scipy.integrate as integrate

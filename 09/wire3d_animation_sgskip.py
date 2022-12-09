@@ -7,6 +7,11 @@ A very simple "animation" of a 3D plot.  See also :doc:`rotate_axes3d_sgskip`.
 
 (This example is skipped when building the documentation gallery because it
 intentionally takes a long time to run)
+
+Source: From the internet
+Not this code here but other examples:
+https://www.geeksforgeeks.org/3d-wireframe-plotting-in-python-using-matplotlib/
+Let it run in the terminal.
 """
 
 import matplotlib.pyplot as plt
