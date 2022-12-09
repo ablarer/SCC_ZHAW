@@ -13,10 +13,10 @@ xmax = L
 tmin = 0
 tmax = 4
 
-x = np.arange(xmin, xmax, 0.05)
+x = np.arange(xmin, xmax + 0.01, 0.05)
 nx = len(x)
 
-t = np.arange(tmin, tmax, 0.01)
+t = np.arange(tmin, tmax + 0.01, 0.01)
 nt = len(t)
 
 u = np.zeros((nx, nt))

@@ -13,7 +13,7 @@ L = 1
 xmin = 0
 xmax = L
 tmin = 0
-tmax = 9
+tmax = 4
 
 xrange = np.arange(xmin, xmax + 0.1, 0.1)
 nx = len(xrange)
@@ -35,7 +35,8 @@ x, t = np.meshgrid(xrange, trange)
 fig = plt.figure()
 for t in range(100):
     u = Wave_PDE_Task1_8(xrange, trange, u_initial, du_initial, u0_boundary, uL_boundary, k)
-    plt.scatter(x,u.T)
+    # u.T divided by ten so that the range of u is the same as within task 1.6
+    plt.scatter(x,u.T / 10)
     plt.xlabel('x')
     plt.ylabel('u')
     plt.title('Task 1.8 a) Wave equation in 2D - Numerical Solution')

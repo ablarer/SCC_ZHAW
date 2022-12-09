@@ -8,7 +8,7 @@ L = 1
 xmin = 0
 xmax = L
 tmin = 0
-tmax = 9
+tmax = 4
 
 xrange = np.arange(xmin, xmax + 0.1, 0.1)
 nx = len(xrange)
@@ -29,7 +29,8 @@ x, t = np.meshgrid(xrange, trange)
 
 fig = plt.figure()
 ax = fig.add_subplot(projection='3d')
-surf = ax.plot_surface(x, t, u.T, cmap=cm.coolwarm, linewidth=0, antialiased=False)
+# u.T divided by ten so that the range of u is the same as within task 1.6
+surf = ax.plot_surface(x, t, u.T / 10, cmap=cm.coolwarm, linewidth=0, antialiased=False)
 plt.xlabel('x')
 plt.ylabel('t')
 plt.title('Task 1.8 a) Wave equation in 3D - Numerical Solution')
