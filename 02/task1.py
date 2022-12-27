@@ -7,14 +7,14 @@ import unittest
 from numpy.linalg import inv
 
 
-# Task 1.1
+# Task 1
 def rotate_around_point(p, a, b, phi):
     # translate to center
-    center = np.array([[1, 0, -a], [0, 1, -b], [0, 0, 1]])
+    translate_to_center = np.array([[1, 0, -a], [0, 1, -b], [0, 0, 1]])
     # print('Center\n', center)
 
     # translate back to point in space
-    to_point = inv(center)
+    to_point = inv(translate_to_center)
     # print('To point\n', to_point)
 
     # rotate around center
@@ -22,7 +22,7 @@ def rotate_around_point(p, a, b, phi):
     # print('Rotation\n', rotation)
 
     # translate around center -> rotate around center -> translate back to original point in space
-    p_new = ((to_point @ rotation) @ center) @ p
+    p_new = ((to_point @ rotation) @ translate_to_center) @ p
     # print('P new\n', p_new)
 
     return p_new

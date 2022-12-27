@@ -48,7 +48,7 @@ for i in range(n):
     s3 = T @ s3
     s4 = T @ s4
     list_points.append([cs, s1, s2, s3, s4])
-print('cs ', cs, 's1 ', s1, 's2 ', s2, 's3 ', s3, 's4 ',s4)
+# print('cs ', cs, 's1 ', s1, 's2 ', s2, 's3 ', s3, 's4 ',s4)
 
 fig, ax = plt.subplots()
 ln1, = plt.plot([], [], 'r')  # Box lines, For the box, plot empty list, Das Komma braucht es!
