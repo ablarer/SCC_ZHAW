@@ -17,7 +17,7 @@ from calculate_border_task1 import calculate_border_task1
 
 # Define path
 # os.chdir('C:\\Users\\knaa\\Documents\\01-Sync\\SCC\\Ressources\\02_Skin_Cancer_Detection\\Assignement\\Solutions')
-path = '.'
+path = 'Skin Cancer Detection Python - Part 1'
 img = 'B496a.png'
 # img ='IMG_4106.jpg'
 path_img = path + '/' + img

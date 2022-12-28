@@ -42,15 +42,16 @@ print(Df)
 
 # Show that the linear, homogenous PDE of first order is equal to 0:
 Df_1 = 1 / x * Df[0] + Pow(y, 3) * Df[1]
-print(Df_1)
+print('Show that the linear, homogenous PDE of first order is equal to 0:',Df_1)
 
 ff = sp.lambdify((x, y), f)
 gfx = sp.lambdify((x, y), Df[0])
 gfy = sp.lambdify((x, y), Df[1])
 
-ran = np.arange(-3, 3.1, .2)
-[xx, yy] = np.meshgrid(ran, ran)
-zz = ff(xx, yy).reshape(len(ran), len(ran))
+ran_x = np.arange(-3, 3.1, .2)
+ran_y = np.arange(1, 5, .2)
+[xx, yy] = np.meshgrid(ran_x, ran_y)
+zz = ff(xx, yy).reshape(len(ran_x), len(ran_y))
 
 fig = plt.figure()
 ax = fig.add_subplot(projection='3d')

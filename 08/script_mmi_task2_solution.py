@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 
 # Define path
 os.chdir('C:\\Users\\knaa\\Documents\\01-Sync\\SCC\\Ressources\\02_Skin_Cancer_Detection\\Assignement\\Solutions')
-path = '.'
+path = 'Skin Cancer Detection Python - Part 1'
 img ='B496a.png'
 #img='test3.jpg'
 path_img = path+'\\'+img

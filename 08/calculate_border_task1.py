@@ -180,4 +180,3 @@ def calculate_border_task1(path_img, crop_factor, sigma):
     border = contours
     
     return cropped_img_cl, cropped_img_gs, cropped_img_mask, border
-

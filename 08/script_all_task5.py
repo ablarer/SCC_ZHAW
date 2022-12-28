@@ -39,8 +39,8 @@ from calculate_polar_coordinates_task4 import calculate_polar_coordinates_task4
 from calculate_asymmetry_task4_solution import calculate_asymmetry_task4_solution
 
 # 1) Define paths
-path_nevi = './Images Nevi/Melanocytic_Nevus(mole)_Images'
-path_melanoma = './Images Melanoma/Malignant_Melanoma_Images'
+path_nevi = 'Images Nevi/Melanocytic_Nevus(mole)_Images'
+path_melanoma = 'Images Melanoma/Malignant_Melanoma_Images'
 
 # 2) Defines the input parameters for the sub-functions to be called
 crop_factor_nevi = 0.01         # 1% of the edges of nevi images is cut away
