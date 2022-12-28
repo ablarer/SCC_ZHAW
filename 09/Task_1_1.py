@@ -24,4 +24,3 @@ plt.xlabel('X')
 plt.ylabel('Y')
 plt.title('x * y ** 2 * (math.sin(x) + math.sin(y))')
 plt.show()
-
