@@ -1,6 +1,6 @@
 # Surce
 # https://fenicsproject.org/olddocs/dolfin/1.5.0/python/demo/documented/poisson/python/documentation.html
-from dolfin import *
+from dolfin import * # import dolfinx?
 
 # Create mesh and define function space
 mesh = UnitSquareMesh(32, 32)
