@@ -59,7 +59,6 @@ def calculate_classifiers_task6_solution(nn_training_data,nn_target_data,nn_add_
     print('X_test.shape= ',X_test.shape,', y_test.shape= ',y_test.shape)
     
     print('\n--------------------------Support Vector Machine-------------------------------------\n')
-
     SVC_model = SVC(kernel='linear', C=1, random_state=0).fit(X_train, y_train)
     SVC_score_test = SVC_model.score(X_test,y_test)
     SVC_score_validate=SVC_model.score(X_validate,y_validate)
@@ -70,7 +69,6 @@ def calculate_classifiers_task6_solution(nn_training_data,nn_target_data,nn_add_
     ConfusionMatrixDisplay.from_estimator(SVC_model, X_test, y_test),plt.title('Confusion Matrix SVC - Test Data')
 
     ConfusionMatrixDisplay.from_estimator(SVC_model, X_validate, y_validate),plt.title('Confusion Matrix SVC - Validation Nevi')
-    
 
     # cross validate the model, see https://scikit-learn.org/stable/modules/cross_validation.html#computing-cross-validated-metrics
     SVC_model = SVC(kernel='linear', C=1, random_state=42)
@@ -79,7 +77,6 @@ def calculate_classifiers_task6_solution(nn_training_data,nn_target_data,nn_add_
     print("SVC delivers %0.2f accuracy with a standard deviation of %0.2f" % (SVC_cross_scores.mean(), SVC_cross_scores.std()))
 
     print('\n--------------------------K Nearest Neighbours-------------------------------------\n')
-  
     KNN_model = KNeighborsClassifier(n_neighbors=5).fit(X_train, y_train)
     KNN_score_test = KNN_model.score(X_test,y_test)
     KNN_score_validate = KNN_model.score(X_validate,y_validate)
@@ -99,8 +96,6 @@ def calculate_classifiers_task6_solution(nn_training_data,nn_target_data,nn_add_
 
 
     print('\n-----------------------Multi Layer Perceptron Neural Network -------------------------------------\n')
-
-
     MLP_model = MLPClassifier(random_state=1, max_iter=1000).fit(X_train, y_train)
     MLP_score_test = MLP_model.score(X_test,y_test)
     MLP_score_validate = MLP_model.score(X_validate,y_validate)
