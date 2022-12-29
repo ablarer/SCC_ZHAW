@@ -53,7 +53,7 @@ trange = np.arange(tmin, tmax + 0.005, 0.005)
 nt = len(trange)
 
 
-def f(x): return 4. * (x / L) * (1. - x / L)
+def f(x): return np.zeros((1, nx))
 
 
 u_initial = f(xrange)
