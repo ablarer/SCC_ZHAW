@@ -4,7 +4,7 @@ import numpy as np
 
 
 # Use >>> python3 Task_1_8c.py <<< for a "movie show".
-k = 1
+c = 1
 L = 1
 
 xmin = 0
@@ -17,7 +17,7 @@ nx = len(xrange)
 trange = np.arange(tmin, tmax + 0.01, 0.01)
 nt = len(trange)
 
-def f(x): return 4. * (x / L) * (1. - x / L)
+def f(x): return x * (1-x)
 
 
 u_initial = f(xrange)
@@ -31,13 +31,12 @@ ax = fig.add_subplot(projection='3d')
 x, t = np.meshgrid(xrange, trange)
 
 # Set the z axis limits so they aren't recalculated each frame.
-ax.set_zlim(-0.2, 0.2)
+ax.set_zlim(-0.06, 0.06)
 
 # Begin plotting.
 wframe = None
 
-u = Wave_PDE_Task1_8(xrange, trange, u_initial, du_initial, u0_boundary, uL_boundary, k)
-
+u = Wave_PDE_Task1_8(xrange, trange, u_initial, du_initial, u0_boundary, uL_boundary, c)
 print(u.T.shape)
 print(u.T[2])
 
@@ -46,7 +45,7 @@ for phi in np.linspace(0, 180. / np.pi, 100):
     if wframe:
         wframe.remove()
     # Generate data
-    u = Wave_PDE_Task1_8(xrange, trange, u_initial, du_initial, u0_boundary, uL_boundary, k)
+    u = Wave_PDE_Task1_8(xrange, trange, u_initial, du_initial, u0_boundary, uL_boundary, c)
     # Plot the new wireframe and pause briefly before continuing.
     wframe = ax.plot_wireframe(x, t, u.T/10 *np.sin(phi), rstride=2, cstride=2)
     plt.pause(0.1)

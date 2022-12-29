@@ -25,8 +25,13 @@ b = np.zeros(nmax)
 
 
 #define functions (input can be vectors)
+#Initial condition
+# u(x,0) = f (x)
 def f(xi): return (xi/L)*(1.-xi/L)
+#Initial condition
+# ut(x,0)=g(x)
 def g(xi): return (xi/L)**2.*(1.-xi/L)
+# u(x,t) ohne Summe
 def un(xi, an, bn, n, L, ti):
     return np.sin(n*np.pi*xi/L)*(an*np.cos(n*np.pi*c*ti/L)+bn*np.sin(n*np.pi*c*ti/L))
 
@@ -39,6 +44,7 @@ for i in np.arange(0 ,nx):
     for j in np.arange (0,nt) :
         uu = 0.0
         for ni in np.arange (1, nmax+1):
+            # u(x,t) = un(...) mit Summe
             uu = uu + un(x[i],a[ni-1],b[ni-1],ni,L,t[j])
         u[i,j] = uu
 

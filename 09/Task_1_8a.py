@@ -2,7 +2,7 @@ from Wave_PDE_Task1_8 import Wave_PDE_Task1_8
 from matplotlib import cm, pyplot as plt, animation
 import numpy as np
 
-k = 1
+c = 1
 L = 1
 
 xmin = 0
@@ -15,15 +15,15 @@ nx = len(xrange)
 trange = np.arange(tmin, tmax + 0.01, 0.01)
 nt = len(trange)
 
-def f(x): return 4. * (x / L) * (1. - x / L)
+def f(x): return x * (1-x)
 
 
 u_initial = f(xrange)
-du_initial = np.ones(u_initial.shape) * 0.2
+du_initial = np.ones(u_initial.shape) * 0.2 # du/dt(0,x) = 0.2
 u0_boundary = np.zeros(nt) # u(0, t) = u(1, t) = 0
 uL_boundary = np.zeros(nt) # u(0, t) = u(1, t) = 0
 
-u = Wave_PDE_Task1_8(xrange, trange, u_initial, du_initial, u0_boundary, uL_boundary, k)
+u = Wave_PDE_Task1_8(xrange, trange, u_initial, du_initial, u0_boundary, uL_boundary, c)
 
 x, t = np.meshgrid(xrange, trange)
 
