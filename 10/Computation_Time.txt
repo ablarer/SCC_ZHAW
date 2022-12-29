@@ -1,0 +1,1 @@
+Das Tutorial 3, cylinder195 läuft mit einem Prozessor zirka 9.8 Stunden. Mit 10 Prozessoren lokal zirka 5 Stunden, mit 36 Prozessoren in der Cloud zirka 3 Stunden.
