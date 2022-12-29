@@ -55,14 +55,13 @@ def calculate_color_task3(cropped_img_cl, cropped_img_mask, color_table, thresho
 
     # 1) Extract BGR color channels and flatten them (makes it easier)
     ## Versuch
-    path = 'Skin Cancer Detection Python - Part 1'
+    path = '.'
     img = 'B496a.png'
     path_img = path + '/' + img
     print('Processed Picture: ', img)
     # Versuch
 
     input_image = cv2.imread(img, cv2.IMREAD_COLOR)
-    # TODO Check if OK, replaced cropped_img_cl with input_image and the code between ## Versuch##
     R = cropped_img_cl[:, :, 0].astype(np.float64).flatten()
     G = cropped_img_cl[:, :, 1].astype(np.float64).flatten()
     B = cropped_img_cl[:, :, 2].astype(np.float64).flatten()
